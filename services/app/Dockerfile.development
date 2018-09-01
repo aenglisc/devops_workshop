@@ -11,20 +11,3 @@ RUN apt-get update && apt-get install -y inotify-tools
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm install -g npm-check-updates
-
-COPY mix.* ./
-RUN mix deps.get
-
-COPY ./assets/package.json ./
-COPY ./assets/package-lock.json ./
-
-RUN npm install
-
-RUN mix deps.compile
-
-COPY . .
-
-RUN mix compile
-RUN mix phx.digest
-
-CMD ["mix", "phx.server"]
