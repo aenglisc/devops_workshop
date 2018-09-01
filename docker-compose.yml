@@ -4,15 +4,12 @@ services:
 
   db:
     image: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
 
   app:
     build:
       context: services/app
       dockerfile: Dockerfile.development
-    command: mix phx.server
+    # command: mix phx.server
     ports: 
       - "4000:4000"
     volumes:

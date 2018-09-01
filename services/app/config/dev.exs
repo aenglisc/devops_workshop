@@ -54,5 +54,5 @@ config :devops_workshop, DevopsWorkshop.Repo,
   username: "postgres",
   password: "postgres",
   database: "devops_workshop_dev",
-  # hostname: "localhost",
+  hostname: "db",
   pool_size: 10
