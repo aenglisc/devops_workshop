@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  app:
+    build:
+      context: services/app
+      dockerfile: Dockerfile.development
+    command: mix phx.server
+    ports: 
+      - "4000:4000"
+    volumes:
+      - "~/.bash-history:/.bash-history"
+      - "./services/app:/usr/src/app:cached"
+      - "/tmp:/tmp:delegated"
+    depends_on:
+      - db
