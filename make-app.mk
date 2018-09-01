@@ -22,3 +22,6 @@ app-db-drop:
 
 app-db-prepare:
 	docker-compose run app make db-prepare
+
+app-development-setup-env:
+	ansible-playbook ansible/development.yml -i ansible/development -vv

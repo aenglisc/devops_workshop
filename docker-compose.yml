@@ -5,6 +5,18 @@ services:
   db:
     image: postgres
 
+  nginx:
+    build:
+      context: services/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - "./services/nginx/aenglisc.conf:/aenglisc.conf"
+      # - "./services/nginx/maintenance.html:/etc/nginx/html/maintenance.html"
+    depends_on:
+      - app
+
   app:
     build:
       context: services/app
@@ -12,6 +24,7 @@ services:
     command: mix phx.server
     ports: 
       - "4000:4000"
+    # env_file: '.env'
     volumes:
       - "~/.bash-history:/.bash-history"
       - "./services/app:/usr/src/app:cached"
