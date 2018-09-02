@@ -12,8 +12,6 @@ app-bash-root:
 app-build:
 	docker-compose build
 
-app-setup: app-build app-install app-db-prepare
-
 app-install:
 	docker-compose run app make install
 
@@ -23,5 +21,6 @@ app-db-drop:
 app-db-prepare:
 	docker-compose run app make db-prepare
 
-app-development-setup-env:
-	ansible-playbook ansible/development.yml -i ansible/development -vv
+app-setup: development-setup-env app-build app-install app-db-prepare
+
+app-db-reset: app-db-drop app-db-prepare

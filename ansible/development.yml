@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Generate .env file
+    template: 
+      src: environment.j2
+      dest: "../.env"
