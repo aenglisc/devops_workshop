@@ -1,0 +1,11 @@
+version: '2'
+  services:
+    db:
+      image: postgres
+    sut:
+      build:
+        context: .
+        dockerfile: Dockerfile.production
+      command: mix test
+      depends_on:
+        - db
